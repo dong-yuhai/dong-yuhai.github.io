@@ -5,7 +5,7 @@
     <script type="text/javascript" src="./Native/microphone.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | WebChatroom</title>
+    <title>WebChatroom</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
@@ -18,11 +18,6 @@
   <body>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">WebChatroom</div>
-      </div>
     </div>
   
     <!-- BEGIN WEBGL FILE BROWSER LIB -->
@@ -69,7 +64,8 @@
         </div>
     </div>
 
-    <script type='text/javascript'>
+    <script type="text/javascript">
+        navigator.standalone = navigator.standalone || (screen.height-document.documentElement.clientHeight<40)
         // ************************ Drag and drop ***************** //
         let dropArea = document.getElementById("fb_popup");
         let dropAreaBG = document.getElementById("fb_popup_background");
@@ -113,7 +109,7 @@
         }
     </script>
 
-    <script type='text/javascript'>
+    <script type="text/javascript">
         function callFBFunctionByName(functionName, parameter){
             switch(functionName){
                 case "initializeFBLibrary":
@@ -285,7 +281,27 @@
                     break;
             }
         }
-
+        function resizeWindow(){
+        var myWidth = innerWidth;
+        var myHeight = innerHeight;
+        document.getElementById("unityContainer").style.width = myWidth + "px";
+        document.getElementById("unityContainer").style.height = myHeight+ "px";
+        } 
+        function no_scroll() { 
+            document.addEventListener("mousewheel", scroll_control, { passive: false }); 
+            document.addEventListener("touchmove", scroll_control, { passive: false });
+        } 
+        function return_scroll() { 
+            document.removeEventListener("mousewheel", scroll_control, { passive: false }); 
+            document.removeEventListener('touchmove', scroll_control, { passive: false });
+        } 
+        function scroll_control(event) {
+            event.preventDefault();
+        }
+  
+        resizeWindow();
+        no_scroll();
+        window.addEventListener('resize', resizeWindow);
     </script>
     <!-- END WEBGL FILE BROWSER LIB -->
 </body>
