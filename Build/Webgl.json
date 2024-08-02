@@ -3,7 +3,6 @@
 "productName": "WebChatroom",
 "productVersion": "0.1",
 "dataUrl": "Webgl.data.unityweb",
-"TOTAL_MEMORY":128435456,
 "wasmCodeUrl": "Webgl.wasm.code.unityweb",
 "wasmFrameworkUrl": "Webgl.wasm.framework.unityweb",
 "graphicsAPI": ["WebGL 1.0"],
